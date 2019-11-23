@@ -2,6 +2,7 @@ from flask import *
 import pandas as pd
 
 from src import common
+from src import individual
 
 # app = Flask(__name__)
      # 
@@ -21,8 +22,15 @@ from src import common
 
 if __name__ == '__main__':
     # common.Extract.check_input('sample2.csv')
-    general = common.Mutual_description('train.csv')
-    print(general.show_table())
-    print(general.data_info())
-    print(general.data_description())
-    general.correlations_heatmap()
+    mutual = common.Mutual_description('train.csv')
+    # print(mutual.show_table())
+    # print(mutual.data_info())
+    # print(mutual.data_description())
+    # mutual.correlations_heatmap()
+
+    singular = individual.Singular_description('train.csv')
+    singular.histogram()
+    # print(singular.average())
+    # print(singular.expected_value())
+    # print(singular.median())
+    # print(singular.mode())
