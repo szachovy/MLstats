@@ -1,13 +1,15 @@
 import numpy as np
 import pandas as pd
 from itertools import compress
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 class Extract(object):
-    def __init__(self, dataset):
-        self.dataset = self.unpack(dataset)
+    def __init__(self, file_name):
+        self.dataset = self.check_input(file_name)
 
-    @classmethod
-    def check_input(cls, file_name):
+    @staticmethod
+    def check_input(file_name):
         if file_name.endswith('.csv'):
             dataset = pd.read_csv(file_name)
                 
@@ -26,4 +28,25 @@ class Extract(object):
                 if ((np.array_equal(dataset[dataset.columns[index]], [value+1 for value in range(len(dataset[dataset.columns[index]]))])) or (np.array_equal(dataset[dataset.columns[index]], [value+1 for value in range(len(dataset[dataset.columns[index]]))]))):
                     dataset.drop(dataset.columns[index], axis=1, inplace=True)
                 
-        return cls(dataset)
+        return dataset
+
+class Mutual_description(Extract):
+
+    def __init__(self, file_name):
+        super().__init__(file_name)
+        
+    def show_table(self):
+        return self.dataset
+
+    def data_info(self):
+        return self.dataset.info()
+
+    def data_description(self):
+        return self.dataset.describe()
+
+    def correlations_heatmap(self):
+        fig, ax = plt.subplots()
+        fig.set_size_inches(24, 16)
+        
+        ax=sns.heatmap(self.dataset.corr(), annot=True, linewidths=.5, cmap="YlGnBu", fmt='.1f')
+        plt.show()

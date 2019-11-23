@@ -20,4 +20,9 @@ from src import common
     # app.run(debug = True)
 
 if __name__ == '__main__':
-    common.Extract.check_input('sample2.csv')
+    # common.Extract.check_input('sample2.csv')
+    general = common.Mutual_description('train.csv')
+    print(general.show_table())
+    print(general.data_info())
+    print(general.data_description())
+    general.correlations_heatmap()
