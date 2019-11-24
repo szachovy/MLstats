@@ -51,6 +51,7 @@ class Singular_description(common.Mutual_description):
         return scipy.stats.variation(self.dataset['MSSubClass'])
 
     def gini_coefficient(self):
+        # solve future warning
         mad = np.abs(np.subtract.outer(self.dataset['MSSubClass'], self.dataset['MSSubClass'])).mean()
         rmad = mad/np.mean(self.dataset['MSSubClass'])
         return 0.5 * rmad
@@ -75,23 +76,4 @@ class Singular_description(common.Mutual_description):
         pass
 
     def discriminant_analysis(self):
-        pass
-
-class Singular_to_all_description(common.Mutual_description):
-    def __init__(self, file_name):
-        super().__init__(file_name)
-        
-    def anova(self):
-        # return stats.f_oneway(tillamook, newport, petersburg, magadan, tvarminne)
-        pass
-
-    def relevance(self):
-        pass
-
-    def redundancy(self):
-        pass
-
-    def interaction(self):
-        pass
-
-    
+        pass    

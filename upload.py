@@ -3,6 +3,7 @@ import pandas as pd
 
 from src import common
 from src import individual
+from src import mixed
 
 # app = Flask(__name__)
      # 
@@ -30,7 +31,16 @@ if __name__ == '__main__':
 
     singular = individual.Singular_description('train.csv')
     singular.histogram()
-    # print(singular.average())
-    # print(singular.expected_value())
-    # print(singular.median())
-    # print(singular.mode())
+    print(singular.average())
+    print(singular.expected_value())
+    print(singular.median())
+    print(singular.mode())
+    print(singular.standard_deviation())
+    print(singular.absolute_deviation_from_mean())
+    print(singular.absolute_deviation_from_median())
+    print(singular.quarter_deviation())
+    print(singular.coefficient_of_variation())
+    print(singular.gini_coefficient())
+    print(singular.asymmetry_factor())
+    print(singular.entropy())
+    
