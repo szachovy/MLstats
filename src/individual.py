@@ -8,9 +8,6 @@ from statsmodels import robust
 from . import common
 
 class Singular_description(common.Mutual_description):
-    def __init__(self, file_name):
-        super().__init__(file_name)
-
     def histogram(self):
         # for loop for float and int type columns
         sns.distplot(self.dataset['MSSubClass'], rug=True)
@@ -60,20 +57,4 @@ class Singular_description(common.Mutual_description):
         return scipy.stats.skew(self.dataset['MSSubClass'])
 
     def entropy(self):
-        return scipy.stats.entropy(self.dataset['MSSubClass'])
-
-# think about the rest of this file
-    def composite_estimators(self):
-        pass
-
-    def covariance_estimators(self):
-        pass
-
-    def cross_decomposition(self):
-        pass
-
-    def matrix_decomposition(self):
-        pass
-
-    def discriminant_analysis(self):
-        pass    
+        return scipy.stats.entropy(self.dataset['MSSubClass'])    

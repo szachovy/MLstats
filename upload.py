@@ -24,13 +24,13 @@ from src import mixed
 if __name__ == '__main__':
     # common.Extract.check_input('sample2.csv')
     mutual = common.Mutual_description('train.csv')
-    # print(mutual.show_table())
-    # print(mutual.data_info())
-    # print(mutual.data_description())
+    print(mutual.show_table())
+    print(mutual.data_info())
+    print(mutual.data_description())
     # mutual.correlations_heatmap()
 
     singular = individual.Singular_description('train.csv')
-    singular.histogram()
+    # singular.histogram()
     print(singular.average())
     print(singular.expected_value())
     print(singular.median())
@@ -43,4 +43,8 @@ if __name__ == '__main__':
     print(singular.gini_coefficient())
     print(singular.asymmetry_factor())
     print(singular.entropy())
-    
+# 
+    compare = mixed.Singular_to_all_description('train.csv')
+    print(compare.anova())
+    print(compare.discriminant_analysis())
+    print(compare.relevance())

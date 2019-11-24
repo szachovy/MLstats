@@ -30,10 +30,9 @@ class Extract(object):
                 
         return dataset
 
-class Mutual_description(Extract):
-
+class Mutual_description(object):
     def __init__(self, file_name):
-        super().__init__(file_name)
+        self.dataset = Extract.check_input(file_name)
         
     def show_table(self):
         return self.dataset
