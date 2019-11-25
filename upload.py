@@ -9,34 +9,40 @@ from src import common
 from src import individual
 from src import mixed
 
-app = Flask(__name__)
+class Routing(object):
+    app = Flask(__name__)
+    file_name = ""
+        
+    @app.route('/')
+    def upload():
+        return render_template("upload.html")
 
-@app.route('/')
-def upload():
-    return render_template("upload.html")
 
-@app.route('/plot.png')
-def plot_png():
-    fig = individual.Mutual_description('train.csv').correlations_heatmap()
-    output = io.BytesIO()
-    FigureCanvas(fig).print_png(output)
-    return Response(output.getvalue(), mimetype='image/png')
-              
-@app.route('/describe', methods = ['POST'])
-def success():
-    if request.method == 'POST':
-        f = request.files['file']
-        mutual = common.Mutual_description(f.filename)
-        singular = individual.Singular_description(f.filename)
+    @app.route('/plot.png')
+    def plot_png():
+        fig = common.Mutual_description(Routing.file_name).correlations_heatmap()
+        output = io.BytesIO()
+        FigureCanvas(fig).print_png(output)
+        return Response(output.getvalue(), mimetype='image/png')
 
-        return render_template("describe.html", tables = [mutual.show_table()],
-        info = [mutual.data_info()],
-        description =  [mutual.data_description()],
-        ) # singular.average()
 
+    @app.route('/describe', methods = ['POST'])
+    def success():
+        if request.method == 'POST':
+            Routing.file_name = request.files['file'].filename
+            
+            mutual = common.Mutual_description(Routing.file_name)
+            singular = individual.Singular_description(Routing.file_name)
+
+            return render_template("describe.html", tables = [mutual.show_table()],
+                info = [mutual.data_info()],
+                description =  [mutual.data_description()],
+            ) # singular.average()
+    
+# 
       
 if __name__ == '__main__':
-    app.run(debug = True)
+    Routing.app.run(debug = True)
 
 # if __name__ == '__main__':
     # mutual = common.Mutual_description('train.csv')

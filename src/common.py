@@ -59,10 +59,11 @@ class Mutual_description(object):
         return self.dataset.describe().to_html(classes='data', header="true")
 
     def correlations_heatmap(self):
-    
+        sns.set()
         fig, ax = plt.subplots()
         fig.set_size_inches(24, 16)
         
         ax=sns.heatmap(self.dataset.corr(), annot=True, linewidths=.5, cmap="YlGnBu", fmt='.1f')
+        fig.patch.set_alpha(0.0)
         return fig
         # plt.show()

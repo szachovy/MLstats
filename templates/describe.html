@@ -1,5 +1,7 @@
+<!DOCTYPE html>
 <html>
     <head>  
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/describe.css') }}" />
         <title>describe</title>  
     </head>  
     <body>
@@ -18,7 +20,16 @@
                 {{ table|safe }}
     {% endfor %}
     </div>
-    <img src="/plot.png" alt="my plot">
+    <div class="container">
+        <img src="/plot.png" class="image" alt="my plot">
+        <div class="middle">
+            <div class="text">
+            John Doe
+            </div>
+        </div>
+    </div>
+
+    
     </body>
     
 </html>  
