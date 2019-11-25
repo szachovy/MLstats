@@ -35,18 +35,34 @@ class Mutual_description(object):
         self.dataset = Extract.check_input(file_name)
         
     def show_table(self):
+        # freeze first left column and headers
         return self.dataset.to_html(classes='data', header="true")
 
     def data_info(self):
-        return self.dataset.info()
+        # freeze headers
+        dict_info = {}
+        for column in self.dataset.columns:
+            dict_info[column] = [self.dataset.loc[:,column].dtype, self.dataset.loc[:,column].isna().sum(), self.dataset.loc[:,column].memory_usage(deep=True)]
+
+        data_info = pd.DataFrame(data=dict_info).transpose()
+        data_info.columns = ['Data Type', 'Null Occurences', 'Memory usage']
+        return data_info.to_html(classes='data', header="true")
+        
+        # buffer = io.StringIO()
+        # self.dataset.info(buf = buffer)
+        # with open("df_info.csv", "w", encoding="utf-8") as f:  # doctest: +SKIP
+            # f.write(buffer.getvalue())
+        
 
     def data_description(self):
-        return self.dataset.describe()
+        # freeze first left column
+        return self.dataset.describe().to_html(classes='data', header="true")
 
     def correlations_heatmap(self):
-        # save plot then send a picture to flask
+    
         fig, ax = plt.subplots()
         fig.set_size_inches(24, 16)
         
         ax=sns.heatmap(self.dataset.corr(), annot=True, linewidths=.5, cmap="YlGnBu", fmt='.1f')
-        plt.show()
+        return fig
+        # plt.show()

@@ -8,6 +8,17 @@
                 {{ table|safe }}
     {% endfor %}
     </div>
+    <div style="width: 30%; height: 40%; overflow-y: scroll;">
+    {% for table in info %}
+                {{ table|safe }}
+    {% endfor %}
+    </div>
+    <div style="width: 30%; overflow-x: scroll;">
+    {% for table in description %}
+                {{ table|safe }}
+    {% endfor %}
+    </div>
+    <img src="/plot.png" alt="my plot">
     </body>
     
 </html>  

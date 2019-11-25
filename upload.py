@@ -1,23 +1,39 @@
 from flask import *  
 import pandas as pd
+from flask import Response
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
+import io
 
 from src import common
 from src import individual
 from src import mixed
 
 app = Flask(__name__)
-     
+
 @app.route('/')
 def upload():
     return render_template("upload.html")
-     
+
+@app.route('/plot.png')
+def plot_png():
+    fig = individual.Mutual_description('train.csv').correlations_heatmap()
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
+              
 @app.route('/describe', methods = ['POST'])
 def success():
     if request.method == 'POST':
         f = request.files['file']
         mutual = common.Mutual_description(f.filename)
         singular = individual.Singular_description(f.filename)
-        return render_template("describe.html", tables = [mutual.show_table()]) # singular.average()
+
+        return render_template("describe.html", tables = [mutual.show_table()],
+        info = [mutual.data_info()],
+        description =  [mutual.data_description()],
+        ) # singular.average()
+
       
 if __name__ == '__main__':
     app.run(debug = True)
