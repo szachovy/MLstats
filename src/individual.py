@@ -8,16 +8,27 @@ from statsmodels import robust
 from . import common
 
 class Singular_description(common.Mutual_description):
+
     def histogram(self):
-        # for loop for float and int type columns
         sns.distplot(self.dataset['MSSubClass'], rug=True)
         plt.show()
 
     def measurement(self):
-        pass
+        
+        self.dataset.fillna(method='ffill', inplace=True)
 
-    def distribution(self):
-        pass
+        if self.dataset['MasVnrArea'].dtypes == 'float64':    
+            for value in self.dataset['MasVnrArea'].values:
+                if float(value) != int(value):        
+                    return 'quantitive continous'
+                    
+        if len(pd.unique(self.dataset['MasVnrArea'])) == 2:        
+            print(len(pd.unique(self.dataset['MasVnrArea'])))
+            return 'quantitive discrete categorical'
+
+        else:
+            print(len(pd.unique(self.dataset['MasVnrArea'])))
+            return 'quantitive discrete numerical'
 
     def average(self):
         return np.average(self.dataset['MSSubClass'])

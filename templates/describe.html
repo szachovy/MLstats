@@ -1,9 +1,13 @@
-<html>  
+<html>
     <head>  
         <title>describe</title>  
     </head>  
-    <body>  
-        <p>File uploaded successfully</p>  
-        <p>File Name: {{name}}</p>  
-    </body>  
+    <body>
+    <div style="width: 100%; height: 20%; overflow: scroll;">
+    {% for table in tables %}
+                {{ table|safe }}
+    {% endfor %}
+    </div>
+    </body>
+    
 </html>  

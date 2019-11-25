@@ -35,7 +35,7 @@ class Mutual_description(object):
         self.dataset = Extract.check_input(file_name)
         
     def show_table(self):
-        return self.dataset
+        return self.dataset.to_html(classes='data', header="true")
 
     def data_info(self):
         return self.dataset.info()
@@ -44,6 +44,7 @@ class Mutual_description(object):
         return self.dataset.describe()
 
     def correlations_heatmap(self):
+        # save plot then send a picture to flask
         fig, ax = plt.subplots()
         fig.set_size_inches(24, 16)
         
