@@ -1,26 +1,23 @@
-from flask import *  
 import pandas as pd
-from flask import Response
+from flask import Flask, Response, request, render_template
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import io
 
-from src import common
-from src import individual
-from src import mixed
+from src import export
 
 class Routing(object):
     app = Flask(__name__)
     file_name = ""
+    connection = ""
         
     @app.route('/')
     def upload():
         return render_template("upload.html")
 
-
     @app.route('/plot.png')
     def plot_png():
-        fig = common.Mutual_description(Routing.file_name).correlations_heatmap()
+        fig = Routing.connection.data['corr_heatmap']
         output = io.BytesIO()
         FigureCanvas(fig).print_png(output)
         return Response(output.getvalue(), mimetype='image/png')
@@ -29,22 +26,31 @@ class Routing(object):
     @app.route('/describe', methods = ['POST'])
     def success():
         if request.method == 'POST':
-            Routing.file_name = request.files['file'].filename
-            
-            mutual = common.Mutual_description(Routing.file_name)
-            singular = individual.Singular_description(Routing.file_name)
+            try:            
+                Routing.file_name = request.files['file'].filename
+                Routing.connection = export.Connect(Routing.file_name)
+                Routing.connection.common_connector() 
 
-            return render_template("describe.html", tables = [mutual.show_table()],
-                info = [mutual.data_info()],
-                description =  [mutual.data_description()],
-            ) # singular.average()
+                return render_template("describe.html", tables = Routing.connection.data['tables'],
+                    info = Routing.connection.data['info'],
+                    description =  Routing.connection.data['description'],
+                )
+                
+            except Exception:
+                return render_template("upload.html") #, error = 'Incorrect data format'
+        else:
+            return render_template("upload.html") #, error = 'File not provided'
+
     
 # 
-      
+      # 
 if __name__ == '__main__':
     Routing.app.run(debug = True)
 
 # if __name__ == '__main__':
+    # data = export.Connect('train.csv')
+    # data.common_connector()
+    # print(data.data)
     # mutual = common.Mutual_description('train.csv')
     # print(mutual.show_table())
     # print(mutual.data_info())

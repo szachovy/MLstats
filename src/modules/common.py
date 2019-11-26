@@ -1,14 +1,19 @@
+from flask import Flask
 import numpy as np
 import pandas as pd
 from itertools import compress
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-class Extract(object):
-    def __init__(self, file_name):
-        self.dataset = self.check_input(file_name)
+from . import single
+from . import mixed
 
-    @staticmethod
+class Validator(object):
+
+    def __new__(cls, file_name):
+        return cls.check_input(file_name)
+
+        
     def check_input(file_name):
         if file_name.endswith('.csv'):
             dataset = pd.read_csv(file_name)
@@ -30,9 +35,11 @@ class Extract(object):
                 
         return dataset
 
-class Mutual_description(object):
-    def __init__(self, file_name):
-        self.dataset = Extract.check_input(file_name)
+class Mutual_description(single.Singular_description, mixed.Singular_to_all_description):
+
+    def __init__(self, dataset):
+        self.dataset = dataset
+        super().__init__()        
         
     def show_table(self):
         # freeze first left column and headers
@@ -47,11 +54,6 @@ class Mutual_description(object):
         data_info = pd.DataFrame(data=dict_info).transpose()
         data_info.columns = ['Data Type', 'Null Occurences', 'Memory usage']
         return data_info.to_html(classes='data', header="true")
-        
-        # buffer = io.StringIO()
-        # self.dataset.info(buf = buffer)
-        # with open("df_info.csv", "w", encoding="utf-8") as f:  # doctest: +SKIP
-            # f.write(buffer.getvalue())
         
 
     def data_description(self):
