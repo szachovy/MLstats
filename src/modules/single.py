@@ -6,17 +6,17 @@ import scipy
 from statsmodels import robust
 
 class Singular_description(object):
+
     def __init__(self):
         self.column = ""
 
 
-    def histogram(self):
-        sns.distplot(self.dataset[self.column], rug=True)
-        plt.show()
+    def histogram(self, plot_number):
+        sns.distplot(self.dataset.iloc[:, [plot_number]], rug=True)
+        return fig
+        # plt.show()
 
     def measurement(self):
-        
-        self.dataset.fillna(method='ffill', inplace=True)
 
         if self.dataset[self.column].dtypes == 'float64':    
             for value in self.dataset[self.column].values:

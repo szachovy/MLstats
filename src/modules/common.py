@@ -38,7 +38,8 @@ class Validator(object):
 class Mutual_description(single.Singular_description, mixed.Singular_to_all_description):
 
     def __init__(self, dataset):
-        self.dataset = dataset
+        self.dataset = dataset.select_dtypes(exclude=['object'])
+        self.dataset.fillna(method='ffill', inplace=True)
         super().__init__()        
         
     def show_table(self):

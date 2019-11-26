@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>  
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/describe.css') }}" />
+        <title>describe</title>  
+    </head>  
+    {% for k,v in a.items() %}
+    <p>
+    {{k}} {{v}}
+    </p>
+    {% endfor %}
+    
+    
+    </body>
+    
+</html>  

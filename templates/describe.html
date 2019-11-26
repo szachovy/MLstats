@@ -6,29 +6,37 @@
     </head>  
     <body>
     <div style="width: 100%; height: 20%; overflow: scroll;">
-    {% for table in tables %}
+    
+    {% for table in common['tables'] %}
                 {{ table|safe }}
     {% endfor %}
     </div>
     <div style="width: 30%; height: 40%; overflow-y: scroll;">
-    {% for table in info %}
+    {% for table in common['info'] %}
                 {{ table|safe }}
     {% endfor %}
     </div>
     <div style="width: 30%; overflow-x: scroll;">
-    {% for table in description %}
+    {% for table in common['description'] %}
                 {{ table|safe }}
     {% endfor %}
     </div>
     <div class="container">
-        <img src="/plot.png" class="image" alt="my plot">
+        <img src="/plot0.png" class="image" alt="my plot">
         <div class="middle">
             <div class="text">
             John Doe
             </div>
         </div>
     </div>
-
+    <div class="container">
+        <img src="/plot0.png" class="image" alt="my plot">
+        <div class="middle">
+            <div class="text">
+            John Doe
+            </div>
+        </div>
+    </div>
     
     </body>
     
