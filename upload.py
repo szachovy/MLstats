@@ -33,15 +33,14 @@ class Routing(object):
 # 
   
     # @app.route('/plot<plot_number>.png')
-    # def plot_png(plot_number = app.config['plot_number']): #
-# 
-        # if not app.config['plot_number']:#Routing.dzialaj: #Routing.app.config['plot_number']:
+    # def plot_png(plot_number = app.config['plot_number']):
+
+        # if not app.config['plot_number']:
             # fig = Routing.connection.heatmap()
         # else:
-            # fig = Routing.connection.histplot(app.config['plot_number'] - 1) #Routing.app.config['plot_number'] - 1
-# 
+            # fig = Routing.connection.histplot(app.config['plot_number'] - 1)
+
         # app.config['plot_number'] += 1
-        # Routing.dzialaj += 1 #Routing.app.config['plot_number'] += 1
         # output = io.BytesIO()
         # FigureCanvas(fig).print_png(output)
         # return Response(output.getvalue(), mimetype='image/png')
@@ -52,18 +51,12 @@ class Routing(object):
         if request.method == 'POST':
             Routing.file_name = request.files['file'].filename
             Routing.connection = export.Connect(Routing.file_name)
-            # 
-                # return render_template("describe.html", tables = Routing.connection.data['tables'],
-                    # info = Routing.connection.data['info'],
-                    # description =  Routing.connection.data['description'],
-                # )
-                                # 
+
             return render_template("describe.html", common = Routing.connection.common_connector(),
                         single = Routing.connection.single_connector(),
                         mixed = Routing.connection.mixed_connector(),
-                        plots = Routing.connection.heatmap()
+                        plots = ['/plot0.png', '/plot1.png'] 
                         )
-                # 
     
         else:
             return render_template("upload.html") #, error = 'File not provided'

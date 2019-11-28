@@ -70,8 +70,6 @@ class Mutual_description(single.Singular_description, mixed.Singular_to_all_desc
         
         ax=sns.heatmap(self.dataset.corr(), annot=True, linewidths=.5, cmap="YlGnBu", fmt='.1f')
         fig.patch.set_alpha(0.0)
-
-        output = io.BytesIO()
-        return FigureCanvas(fig).print_png(output)
+        fig.savefig('static/plot0.png', dpi=fig.dpi)
         # return fig
         # plt.show()

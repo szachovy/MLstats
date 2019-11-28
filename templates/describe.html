@@ -22,13 +22,22 @@
     {% endfor %}
     </div>
     <div class="container">
-        <img src={{plots}} class="image" alt="my plot">
+        <img src="{{url_for('static', filename='plot0.png')}}" class="image" alt="my plot0">
         <div class="middle">
             <div class="text">
             John Doe
             </div>
         </div>
     </div>    
+    <div class="container">
+        <img src="{{url_for('static', filename='plot1.png')}}" class="image" alt="my plot0">
+        <div class="middle">
+            <div class="text">
+            John Doe
+            </div>
+        </div>
+    </div>    
+                
     </body>
     
 </html>  

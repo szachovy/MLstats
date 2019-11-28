@@ -12,9 +12,14 @@ class Singular_description(object):
 
 
     def histogram(self, plot_number):
+        sns.set()
         fig, ax = plt.subplots()
-        sns.distplot(self.dataset.iloc[:, [plot_number]], rug=True)
-        return fig
+        fig.set_size_inches(24, 16)
+        
+        ax=sns.distplot(self.dataset.iloc[:, [plot_number]], rug=True)
+        fig.patch.set_alpha(0.0)
+        fig.savefig('static/plot{}.png'.format(plot_number + 1), dpi=fig.dpi)
+        # return fig
         # plt.show()
 
     def measurement(self):

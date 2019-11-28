@@ -4,6 +4,7 @@ from modules import *
 class Connect(object):
     def __init__(self, file_name):
         self.cursor = common.Mutual_description(common.Validator(file_name))
+        self.make_plots()        
         
     def common_connector(self):
         return {'tables': [self.cursor.show_table()],
@@ -11,11 +12,17 @@ class Connect(object):
                 'description': [self.cursor.data_description()]
             }
             
-    def heatmap(self):
-        return self.cursor.correlations_heatmap()
+    # def heatmap(self):
+        # return self.cursor.correlations_heatmap()
+# 
+    # def histplot(self, plot_number):
+        # return self.cursor.histogram(plot_number)
 
-    def histplot(self, plot_number):
-        return self.cursor.histogram(plot_number)
+    def make_plots(self):
+        self.cursor.correlations_heatmap()
+        for plot_number in range(self.cursor.dataset.shape[1]):
+            self.cursor.histogram(plot_number)
+         
         
     def single_connector(self):
         single = {}
