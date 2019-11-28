@@ -4,6 +4,8 @@ import pandas as pd
 from itertools import compress
 import matplotlib.pyplot as plt
 import seaborn as sns
+import io
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
 from . import single
 from . import mixed
@@ -68,5 +70,8 @@ class Mutual_description(single.Singular_description, mixed.Singular_to_all_desc
         
         ax=sns.heatmap(self.dataset.corr(), annot=True, linewidths=.5, cmap="YlGnBu", fmt='.1f')
         fig.patch.set_alpha(0.0)
-        return fig
+
+        output = io.BytesIO()
+        return FigureCanvas(fig).print_png(output)
+        # return fig
         # plt.show()

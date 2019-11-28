@@ -12,6 +12,7 @@ class Singular_description(object):
 
 
     def histogram(self, plot_number):
+        fig, ax = plt.subplots()
         sns.distplot(self.dataset.iloc[:, [plot_number]], rug=True)
         return fig
         # plt.show()

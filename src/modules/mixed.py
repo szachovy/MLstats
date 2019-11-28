@@ -7,6 +7,8 @@ from sklearn.feature_selection import SelectKBest, chi2
 class Singular_to_all_description(object):
 
     def anova(self):
+        # refactor that later
+        
         max_F_value = -99999999999999999999
         min_F_value = 99999999999999999999
         max_col = ""
@@ -23,14 +25,18 @@ class Singular_to_all_description(object):
             else:
                 pass
                 
-        return [max_col, min_col]
+        return [max_col, max_F_value, min_col, min_F_value]
 
     def discriminant_analysis(self):
         for column in self.dataset.columns:
             self.dataset[column] = self.dataset[column].astype('int64')
-        # clf = LinearDiscriminantAnalysis().fit(self.dataset, self.dataset[self.column])
-        # return clf.score(self.dataset, self.dataset[self.column])
-        return True
+
+        try:
+            clf = LinearDiscriminantAnalysis().fit(self.dataset.drop(self.column, axis=1), self.dataset[self.column])
+            return clf.score(self.dataset.drop(self.column, axis=1), self.dataset[self.column])
+        except ValueError:
+            return 'Here is this ValueError'
+        
         
     def relevance(self):
         # select two most relevant
