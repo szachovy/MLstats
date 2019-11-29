@@ -54,23 +54,27 @@ body {
 	background-color: #F0FFF0;
     border: 1px solid;
 	border-radius: 5px;
+	border-collapse: collapse;
 }
-
+.tables thead { position: sticky; top: 0; background-color: black; color:white;}
+.tables th:first-child { position: sticky; left: 0; }
+.tables tbody th {position: sticky;
+	left: 0px;}
+	
 .info {
     padding: 0.5vh;
     float: left;
 	height: 35vh;
 	overflow-y: scroll;
 	border: 1px solid;
-	border-radius: 5px;
+	border-radius: 3px;
 	margin-bottom: 1vh;
-	margin-left: 3vh;
-	margin-right: 8vh;
 }
 
 .description {
+    float: right;
     border: 1px solid;
-	border-radius: 5px;
+	border-radius: 3px;
 	height: 35vh;
 	overflow-x: scroll;
 }
