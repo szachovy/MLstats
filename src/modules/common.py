@@ -66,10 +66,14 @@ class Mutual_description(single.Singular_description, mixed.Singular_to_all_desc
     def correlations_heatmap(self):
         sns.set()
         fig, ax = plt.subplots()
-        fig.set_size_inches(24, 16)
+        fig.set_size_inches(30, 21)
         
-        ax=sns.heatmap(self.dataset.corr(), annot=True, linewidths=.5, cmap="YlGnBu", fmt='.1f')
+        ax=sns.heatmap(self.dataset.corr(), annot=True, linewidths=1, cmap="Blues", fmt='.2f')
+
+        plt.xticks(rotation=70)
+        
         fig.patch.set_alpha(0.0)
         fig.savefig('static/plot0.png', dpi=fig.dpi)
-        # return fig
+
+        return fig
         # plt.show()

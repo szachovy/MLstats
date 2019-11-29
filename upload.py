@@ -53,8 +53,8 @@ class Routing(object):
             Routing.connection = export.Connect(Routing.file_name)
 
             return render_template("describe.html", common = Routing.connection.common_connector(),
-                        single = Routing.connection.single_connector(),
-                        mixed = Routing.connection.mixed_connector(),
+                        # single = Routing.connection.single_connector(),
+                        # mixed = Routing.connection.mixed_connector(),
                         plots = ['/plot0.png', '/plot1.png'] 
                         )
     

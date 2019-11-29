@@ -1,6 +1,12 @@
 body {
   background-color: lightblue;
+  padding: 3vh;
 }
+
+#div {
+    padding: 1vh;
+}
+
 .container {
   position: relative;
   width: 50%;
@@ -39,4 +45,37 @@ body {
   color: white;
   font-size: 16px;
   padding: 16px 32px;
+}
+
+.tables {
+    height: 40vh;
+    width: 100%;
+	overflow: scroll;
+	background-color: #F0FFF0;
+    border: 1px solid;
+	border-radius: 5px;
+}
+
+.info {
+    padding: 0.5vh;
+    float: left;
+	height: 35vh;
+	overflow-y: scroll;
+	border: 1px solid;
+	border-radius: 5px;
+	margin-bottom: 1vh;
+	margin-left: 3vh;
+	margin-right: 8vh;
+}
+
+.description {
+    border: 1px solid;
+	border-radius: 5px;
+	height: 35vh;
+	overflow-x: scroll;
+}
+
+.heatmap {
+    width: 100%;
+    height: 100%;
 }
