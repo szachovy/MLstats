@@ -12,12 +12,17 @@ class Singular_description(object):
 
 
     def histogram(self, plot_number):
-        sns.set()
-        fig, ax = plt.subplots()
-        fig.set_size_inches(24, 16)
+        sns.set_style("whitegrid")
         
-        ax=sns.distplot(self.dataset.iloc[:, [plot_number]], rug=True)
+        fig, ax = plt.subplots()
+        fig.set_size_inches(16, 12)
+        
+        ax=sns.distplot(self.dataset.iloc[:, [plot_number]], rug=True, color='k')
         fig.patch.set_alpha(0.0)
+        
+        plt.xticks(fontsize=25)
+        plt.yticks(fontsize=25)
+        
         fig.savefig('static/plot{}.png'.format(plot_number + 1), dpi=fig.dpi)
         # return fig
         # plt.show()

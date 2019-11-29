@@ -1,11 +1,8 @@
 body {
-  background-color: lightblue;
-  padding: 3vh;
+    padding: 2vh;
+    background-color: #F5F5F5 !important;
 }
 
-#div {
-    padding: 1vh;
-}
 
 .container {
   position: relative;
@@ -15,7 +12,7 @@ body {
 .image {
   opacity: 1;
   display: block;
-  width: 100%;
+  width: 50%;
   height: auto;
   transition: .5s ease;
   backface-visibility: hidden;
@@ -26,7 +23,7 @@ body {
   opacity: 0;
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 25%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   text-align: center;
@@ -41,45 +38,111 @@ body {
 }
 
 .text {
-  background-color: #4CAF50;
-  color: white;
+  color: black;
   font-size: 16px;
   padding: 16px 32px;
 }
 
+
+
 .tables {
-    height: 40vh;
+    height: 60vh;
     width: 100%;
 	overflow: scroll;
 	background-color: #F0FFF0;
     border: 1px solid;
 	border-radius: 5px;
 	border-collapse: collapse;
+	background-color: white;
+	color: black;
 }
-.tables thead { position: sticky; top: 0; background-color: black; color:white;}
-.tables th:first-child { position: sticky; left: 0; }
-.tables tbody th {position: sticky;
-	left: 0px;}
+
+.tables thead { 
+    position: sticky; 
+    top: 0; 
+    background-color: black; 
+    color: white;
+}
+
+.tables th:first-child { 
+    position: sticky; 
+    left: 0; 
+    background-color: black; 
+    color: white;
+}
+
+.tables tbody th {
+    position: sticky;
+	left: 0px;
+    background-color: black; 
+    color: white;
+}
+
+
 	
 .info {
-    padding: 0.5vh;
     float: left;
 	height: 35vh;
 	overflow-y: scroll;
 	border: 1px solid;
-	border-radius: 3px;
 	margin-bottom: 1vh;
+	background-color: white;
+	color: black;
 }
+
+.info thead { 
+    position: sticky; 
+    top: 0; 
+    background-color: black; 
+    color: white;
+}
+
+.info th:first-child { 
+    position: sticky; 
+    left: 0; 
+    background-color: black; 
+    color: white;
+}
+
+.info tbody th {
+    position: sticky;
+	left: 0px;
+    background-color: black; 
+    color: white;
+}
+
 
 .description {
     float: right;
     border: 1px solid;
-	border-radius: 3px;
 	height: 35vh;
 	overflow-x: scroll;
+	background-color: white;
+	color: black;
+}
+
+.description thead { 
+    position: sticky; 
+    top: 0; 
+    background-color: black; 
+    color: white;
+}
+
+.description th:first-child { 
+    position: sticky; 
+    left: 0; 
+    background-color: black; 
+    color: white;
+}
+
+.description tbody th {
+    position: sticky;
+	left: 0px;
+    background-color: black; 
+    color: white;
 }
 
 .heatmap {
     width: 100%;
-    height: 100%;
+    height: 110vh;
 }

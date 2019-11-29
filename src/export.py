@@ -19,10 +19,10 @@ class Connect(object):
         # return self.cursor.histogram(plot_number)
 
     def make_plots(self):
-        pass
-         # self.cursor.correlations_heatmap()
+        # pass
+        self.cursor.correlations_heatmap()
         # for plot_number in range(self.cursor.dataset.shape[1]):
-            # self.cursor.histogram(plot_number)
+        self.cursor.histogram(0)
          
         
     def single_connector(self):
