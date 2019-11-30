@@ -32,19 +32,52 @@
 
     <h2 class="text-center font-italic font-weight-bold">
         Shape of data : {{ common['shape'][0] }}
-     </h2>
+    </h2>
     
     <img src="{{url_for('static', filename='plot0.png')}}" class="heatmap">
 
     {% for plot in plots %}
         <div class="container">
-            <img src="{{url_for('static', filename='plot1.png' )}}" class="image" alt="my plot0">
+            <img src={{ plot[1] }} class="image">
             <div class="middle">
                 <div class="text">
-                
+                    <b> {{ single[plot[0]][1] }} measurement </b>
+                    </br>
+                    Average: <b>{{ single[plot[0]][2] }}</b>                 
+                    </br>
+                    Expected value: <b>{{ single[plot[0]][3] }}</b>                 
+                    </br>
+                    Median: <b>{{ single[plot[0]][3] }}</b>                 
+                    </br>
+                    Mode: <b>{{ single[plot[0]][4] }}</b>                 
+                    </br>
+                    Standard deviation: <b>{{ single[plot[0]][4] }}</b>                 
+                    </br>
+                    Absolute deviaton from mean: <b>{{ single[plot[0]][5] }}</b>                 
+                    </br>
+                    Absolute deviaton from median: <b>{{ single[plot[0]][6] }}</b>                 
+                    </br>
+                    Quarter deviation: <b>{{ single[plot[0]][7] }}</b>                 
+                    </br>
+                    Coefficient of variation: <b>{{ single[plot[0]][8] }}</b>                 
+                    </br>
+                    Gini coefficient: <b>{{ single[plot[0]][9] }}</b>                 
+                    </br>
+                    Asymmetry factor: <b>{{ single[plot[0]][10] }}</b>                 
+                    </br>
+                    ANOVA max with: <b>{{ mixed[plot[0]][0][0] }}</b> F-value: <b>{{ mixed[plot[0]][0][1] }}</b>
+                    </br>
+                    ANOVA min with <b>{{ mixed[plot[0]][0][2] }}</b> F-value: <b>{{ mixed[plot[0]][0][3] }}</b>
+                    </br>
+                    Discriminant analysis factor <b>{{ mixed[plot[0]][1] }}</b>
+                    </br>
+                    Highest relevance with <b>{{ mixed[plot[0]][2][0] }}</b> and <b>{{ mixed[plot[0]][2][1] }}</b>
                 </div>
             </div>
         </div>    
+        <h2 class="text-center font-italic font-weight-bold">
+            {{ single[plot[0]][0] }} column distribution
+        </h2>
     {% endfor %}
                 
     </body>

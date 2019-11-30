@@ -55,7 +55,7 @@ class Routing(object):
             return render_template("describe.html", common = Routing.connection.common_connector(),
                         single = Routing.connection.single_connector(),
                         mixed = Routing.connection.mixed_connector(),
-                        plots = Routing.connection.plot_list() 
+                        plots = Routing.connection.plot_url_list() 
                         )
     
         else:

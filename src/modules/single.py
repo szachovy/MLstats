@@ -15,7 +15,7 @@ class Singular_description(object):
         sns.set_style("whitegrid")
         
         fig, ax = plt.subplots()
-        fig.set_size_inches(16, 12)
+        fig.set_size_inches(12, 12)
         
         ax=sns.distplot(self.dataset.iloc[:, [plot_number]], rug=True, color='k')
         fig.patch.set_alpha(0.0)
