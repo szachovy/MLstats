@@ -12,17 +12,15 @@ class Connect(object):
                 'description': [self.cursor.data_description()]
             }
             
-    # def heatmap(self):
-        # return self.cursor.correlations_heatmap()
-# 
-    # def histplot(self, plot_number):
-        # return self.cursor.histogram(plot_number)
+
+    def plot_list(self):
+        return ['/plot{}.png'.format(plot) for plot in range(0, self.cursor.dataset.shape[1])]
 
     def make_plots(self):
-        # pass
-        self.cursor.correlations_heatmap()
+        pass
+        # self .cursor.correlations_heatmap()
         # for plot_number in range(self.cursor.dataset.shape[1]):
-        self.cursor.histogram(0)
+            # self.cursor.histogram(plot_number)
          
         
     def single_connector(self):
