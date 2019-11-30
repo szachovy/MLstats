@@ -2,11 +2,13 @@ body {
     padding: 2vh;
     background-color: #F5F5F5 !important;
 }
-
-
+#h2 {
+    margin: 1vh;
+}
 .container {
-  position: relative;
-  width: 50%;
+    float:left;
+    position: relative;
+    width: 50%;
 }
 
 .image {
@@ -22,11 +24,11 @@ body {
   transition: .5s ease;
   opacity: 0;
   position: absolute;
-  top: 50%;
-  left: 25%;
+  top: 15%;
+  left: 12%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
-  text-align: center;
+  text-align: left;
 }
 
 .container:hover .image {
@@ -46,7 +48,7 @@ body {
 
 
 .tables {
-    height: 60vh;
+    height: 50vh;
     width: 100%;
 	overflow: scroll;
 	background-color: #F0FFF0;

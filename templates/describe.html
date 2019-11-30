@@ -30,17 +30,22 @@
     {% endfor %}
     </div>
 
+    <h2 class="text-center font-italic font-weight-bold">
+        Shape of data : {{ common['shape'][0] }}
+     </h2>
+    
     <img src="{{url_for('static', filename='plot0.png')}}" class="heatmap">
 
-
-    <div class="container">
-        <img src="{{url_for('static', filename='plot1.png')}}" class="image" alt="my plot0">
-        <div class="middle">
-            <div class="text">
-            John Doe
+    {% for plot in plots %}
+        <div class="container">
+            <img src="{{url_for('static', filename='plot1.png' )}}" class="image" alt="my plot0">
+            <div class="middle">
+                <div class="text">
+                
+                </div>
             </div>
-        </div>
-    </div>    
+        </div>    
+    {% endfor %}
                 
     </body>
     

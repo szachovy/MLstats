@@ -9,7 +9,8 @@ class Connect(object):
     def common_connector(self):
         return {'tables': [self.cursor.show_table()],
                 'info': [self.cursor.data_info()],
-                'description': [self.cursor.data_description()]
+                'description': [self.cursor.data_description()],
+                'shape': [self.cursor.data_shape()]
             }
             
 
@@ -20,8 +21,7 @@ class Connect(object):
         pass
         # self .cursor.correlations_heatmap()
         # for plot_number in range(self.cursor.dataset.shape[1]):
-            # self.cursor.histogram(plot_number)
-         
+            # self.cursor.histogram(plot_number)         
         
     def single_connector(self):
         single = {}

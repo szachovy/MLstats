@@ -29,6 +29,7 @@ class Singular_description(object):
 
     def measurement(self):
 
+
         if self.dataset[self.column].dtypes == 'float64':    
             for value in self.dataset[self.column].values:
                 if float(value) != int(value):        

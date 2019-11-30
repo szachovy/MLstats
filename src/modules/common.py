@@ -40,19 +40,18 @@ class Validator(object):
 class Mutual_description(single.Singular_description, mixed.Singular_to_all_description):
 
     def __init__(self, dataset):
+        self.dataset_uncorrected = dataset
+        super().__init__()        
         self.dataset = dataset.select_dtypes(exclude=['object'])
         self.dataset.fillna(method='ffill', inplace=True)
-        super().__init__()        
-        
+
     def show_table(self):
-        # freeze first left column and headers
-        return self.dataset.to_html(classes='data', header="true")
+        return self.dataset_uncorrected.to_html(classes='data', header="true")
 
     def data_info(self):
-        # freeze headers
         dict_info = {}
-        for column in self.dataset.columns:
-            dict_info[column] = [self.dataset.loc[:,column].dtype, self.dataset.loc[:,column].isna().sum(), self.dataset.loc[:,column].memory_usage(deep=True)]
+        for column in self.dataset_uncorrected.columns:
+            dict_info[column] = [self.dataset_uncorrected.loc[:,column].dtype, self.dataset_uncorrected.loc[:,column].isna().sum(), self.dataset_uncorrected.loc[:,column].memory_usage(deep=True)]
 
         data_info = pd.DataFrame(data=dict_info).transpose()
         data_info.columns = ['Data Type', 'Null Occurences', 'Memory usage']
@@ -60,15 +59,18 @@ class Mutual_description(single.Singular_description, mixed.Singular_to_all_desc
         
 
     def data_description(self):
-        # freeze first left column
-        return self.dataset.describe().to_html(classes='data', header="true")
+        return self.dataset_uncorrected.describe().to_html(classes='data', header="true")
 
+    def data_shape(self):
+        return self.dataset_uncorrected.shape
+        
     def correlations_heatmap(self):
+        
         sns.set()
         fig, ax = plt.subplots()
         fig.set_size_inches(28, 21)
         
-        ax=sns.heatmap(self.dataset.corr(), annot=True, linewidths=1, cmap="Greys", fmt='.2f')
+        ax=sns.heatmap(self.dataset_uncorrected.corr(), annot=True, linewidths=1, cmap="Greys", fmt='.2f')
 
         plt.xticks(fontsize=16, rotation=70)
         plt.yticks(fontsize=16)
