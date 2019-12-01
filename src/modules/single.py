@@ -58,7 +58,9 @@ class Singular_description(object):
         return np.std(self.dataset[self.column])
 
     def absolute_deviation_from_mean(self):
-        return robust.mad(self.dataset[self.column])
+        # return robust.mad(self.dataset[self.column])
+        return np.mean(np.absolute(self.dataset[self.column] - np.mean(self.dataset[self.column])))
+        # return 1
 
     def absolute_deviation_from_median(self):
         return scipy.stats.median_absolute_deviation(self.dataset[self.column])
