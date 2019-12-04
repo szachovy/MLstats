@@ -35,7 +35,7 @@ class Singular_to_all_description(object):
             clf = LinearDiscriminantAnalysis().fit(self.dataset.drop(self.column, axis=1), self.dataset[self.column])
             return clf.score(self.dataset.drop(self.column, axis=1), self.dataset[self.column])
         except ValueError:
-            return 'Here is this ValueError'
+            return 'Inappropiate data'
         
         
     def relevance(self):

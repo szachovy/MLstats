@@ -26,29 +26,27 @@ class Connect(object):
         
     def single_connector(self):
         single = {}
-        index = 1
+        
         for column in self.cursor.dataset.columns:
             self.cursor.column = column
-            single[index] = [column, self.cursor.measurement(), self.cursor.average(), self.cursor.expected_value(),
+            single[self.cursor.dataset.columns.get_loc(column) + 1] = [column, self.cursor.measurement(),
+                                self.cursor.average(), self.cursor.expected_value(),
                                 self.cursor.median(), self.cursor.mode(), self.cursor.standard_deviation(),
                                 self.cursor.absolute_deviation_from_mean(), self.cursor.absolute_deviation_from_median(),
                                 self.cursor.quarter_deviation(), self.cursor.coefficient_of_variation(),
                                 self.cursor.gini_coefficient(), self.cursor.asymmetry_factor(),
                                 self.cursor.entropy()]
-            index += 1
             
         return single
             
 
     def mixed_connector(self):
         mixed = {}
-        index = 1
         
         for column in self.cursor.dataset.columns:
             self.cursor.column = column
-            mixed[index] = [self.cursor.anova(), self.cursor.discriminant_analysis(), self.cursor.relevance()]
+            mixed[self.cursor.dataset.columns.get_loc(column) + 1] = [self.cursor.anova(), self.cursor.discriminant_analysis(), self.cursor.relevance()]
 
-            index += 1
             
         return mixed
         
