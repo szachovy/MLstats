@@ -1,3 +1,6 @@
+
+__author__ = 'WJ Maj'
+
 from flask import Flask
 import numpy as np
 import pandas as pd
@@ -7,16 +10,38 @@ import seaborn as sns
 import io
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
+############### self defined
 from . import single
 from . import mixed
 
-class Validator(object):
+###########################
 
+class Validator(object):
+    '''
+    Validate input file name
+    Match with indices, export all except 'Unnamed*'
+    '''
     def __new__(cls, file_name):
+        '''
+        Preinitalize with class method
+
+        Returns:
+            func: checking input func (change data format)
+        '''
         return cls.check_input(file_name)
 
         
     def check_input(file_name):
+        '''
+        Checks input file before analysis
+        
+        Raises:
+            Exception: file data is not supported (this couldn`t happened)
+
+        Returns:
+            dataset: extracted pandas dataframe
+
+        '''
         if file_name.endswith('.csv'):
             dataset = pd.read_csv(file_name)
                 
@@ -29,7 +54,9 @@ class Validator(object):
         else:
             raise Exception('selected input file data format is not supported')   
 
+        # find unnamed columns
         index_column = list(compress(dataset.columns, ['Unnamed' in dataset.columns[index] for index in range(dataset.shape[1])]))
+        
         if index_column:
             for index in [dataset.columns.get_loc(index) for index in index_column]:
                 if ((np.array_equal(dataset[dataset.columns[index]], [value+1 for value in range(len(dataset[dataset.columns[index]]))])) or (np.array_equal(dataset[dataset.columns[index]], [value+1 for value in range(len(dataset[dataset.columns[index]]))]))):

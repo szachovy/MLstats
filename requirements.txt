@@ -1,1 +1,10 @@
-# TODO with kubernetes
+Flask==1.1.1
+Flask-Testing==0.7.1
+pandas==0.25.3
+numpy==1.17.4
+matplotlib==3.1.2
+seaborn==0.9.0
+scikit-learn==0.21.3
+scipy==1.3.2
+statsmodels==0.10.2
+Werkzeug==0.16.0
