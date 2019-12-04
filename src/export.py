@@ -1,6 +1,7 @@
 
 from modules import *
 from flask import url_for
+import os
 
 class Connect(object):
     def __init__(self, file_name):
@@ -19,10 +20,9 @@ class Connect(object):
         return [[plot, url_for('static', filename='plot{}.png'.format(plot))] for plot in range(1, self.cursor.dataset.shape[1])]
 
     def make_plots(self):
-        pass
-        # self.cursor.correlations_heatmap()
-        # for plot_number in range(self.cursor.dataset.shape[1]):
-            # self.cursor.histogram(plot_number)
+        self.cursor.correlations_heatmap()
+        for plot_number in range(self.cursor.dataset.shape[1]):
+            self.cursor.histogram(plot_number)
         
     def single_connector(self):
         single = {}
