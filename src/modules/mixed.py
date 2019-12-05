@@ -1,13 +1,26 @@
+
+__author__ = 'WJ Maj'
+
 import numpy as np
 from scipy import stats
+
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.feature_selection import SelectKBest, chi2
 
 
 class Singular_to_all_description(object):
+    '''
+    Show column relation statistics according to rest columns in data frame.
 
+    Base class for Mutual description instance.
+
+    Outcomes are represented after hoover at the bottom of each
+    generated histogram from single.py
+    '''
     def anova(self):
-        # refactor that later
+        # call for Analysis of Variance from one-vs-all features.
+        # send max and min features with score
+        # TODO: Refactorize function
         
         max_F_value = -99999999999999999999
         min_F_value = 99999999999999999999
@@ -28,6 +41,9 @@ class Singular_to_all_description(object):
         return [max_col, max_F_value, min_col, min_F_value]
 
     def discriminant_analysis(self):
+        # call for LDA score from one-vs-all features.
+        # TODO: Refactorize function
+
         for column in self.dataset.columns:
             self.dataset[column] = self.dataset[column].astype('int64')
 
@@ -39,7 +55,8 @@ class Singular_to_all_description(object):
         
         
     def relevance(self):
-        # select two most relevant
+        # call for two most relevant features with this feature.
+        # TODO: Refactorize function
 
         bestfeatures = SelectKBest(score_func=chi2).fit(self.dataset.drop(self.column, axis=1), self.dataset[self.column])
         select_best = list(np.array(bestfeatures.scores_))

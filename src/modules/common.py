@@ -65,17 +65,42 @@ class Validator(object):
         return dataset
 
 class Mutual_description(single.Singular_description, mixed.Singular_to_all_description):
+    '''
+    Show joint dependencies and general description
+    accross mutual features in data set.
 
+    Mutual features handle raw data set,
+    include all informations directly from file.
+
+    - This class is operating by cursor
+    '''
     def __init__(self, dataset):
+        '''
+        General initializator handled by cursor in connection functions.
+        
+        Includes base class initializator (cursor send column info by base class,
+                                            but mutual initializator is here.)
+
+        Args:
+            dataset: validated data frame.
+        '''
         self.dataset_uncorrected = dataset
         super().__init__()        
         self.dataset = dataset.select_dtypes(exclude=['object'])
         self.dataset.fillna(method='ffill', inplace=True)
 
     def show_table(self):
+        # call for data table in request from cursor
         return self.dataset_uncorrected.to_html(classes='data', header="true")
 
     def data_info(self):
+        # call for data information in request from cursor
+        # information includes:
+        # -- Data types
+        # -- Null occurrences
+        # -- Memory usage
+        # (presented in table)        
+        
         dict_info = {}
         for column in self.dataset_uncorrected.columns:
             dict_info[column] = [self.dataset_uncorrected.loc[:,column].dtype, self.dataset_uncorrected.loc[:,column].isna().sum(), self.dataset_uncorrected.loc[:,column].memory_usage(deep=True)]
@@ -86,12 +111,27 @@ class Mutual_description(single.Singular_description, mixed.Singular_to_all_desc
         
 
     def data_description(self):
+        # call for data description in request from cursor
+        # description includes:
+        # -- count
+        # -- mean
+        # -- standard deviation
+        # -- min
+        # -- first quartile
+        # -- median
+        # -- third quartuile
+        # -- max
+        # (presented in table)
         return self.dataset_uncorrected.describe().to_html(classes='data', header="true")
 
     def data_shape(self):
+        # call for data rows and cols as matrix shape
         return self.dataset_uncorrected.shape
         
     def correlations_heatmap(self):
+        # call for correlation heatmap of all numerical features accross data frame
+        # correlation range is adapted on the right bar
+        # plot size and ticks are adjusted according to display size
         
         sns.set()
         fig, ax = plt.subplots()
