@@ -1,5 +1,4 @@
 
-__author__ = 'WJ Maj'
 
 from flask import Flask
 import numpy as np

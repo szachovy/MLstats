@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-__author__ = 'WJ Maj'
 
 from flask import Flask, Response, request, render_template
 from werkzeug import secure_filename

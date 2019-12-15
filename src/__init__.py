@@ -1,5 +1,4 @@
 
-__author__ = 'WJ Maj'
 
 import os
 import sys

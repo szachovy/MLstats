@@ -1,5 +1,4 @@
 
-__author__ = 'WJ Maj'
 
 import numpy as np
 from scipy import stats

@@ -1,5 +1,4 @@
 
-__author__ = 'WJ Maj'
 
 from flask import url_for
 import os

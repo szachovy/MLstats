@@ -1,19 +1,30 @@
-<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-    </head>
-   <body>
-        <p>TODO: this input interface</p>
-      <form action = "/describe" method = "POST" enctype = "multipart/form-data">
-         <input type = "file" name = "file" accept=".csv, .xlsx, .json"/>
-         <input type = "submit" value = "Upload" />
-      </form>
-      </br>
-
-      {{ error_info }}
-
-
-
-   </body>
+<head>
+	<script type="text/javascript" src="static/styles/styling_upload.js"></script>
+	<link rel="stylesheet" type="text/css" href="static/styles/styling_upload.css">
+</head>
+<body>
+<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<h1>MLstats</h1>
+<h3>The power of analysis</h3>
+    <form action = "/describe" method = "POST" enctype = "multipart/form-data">
+<div class="file-upload">
+  <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add File</button>
+  <div class="image-upload-wrap">
+    <input class="file-upload-input" type="file" onchange="readURL(this);" accept=".csv, .xlsx, .json" name="file" />
+    <div class="drag-text">
+      <h3>Drag and drop a file </h3>
+    </div>
+  </div>
+  <div class="file-upload-content">
+    <div class="image-title-wrap">
+	</br>
+      <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+    </div>
+	<input type="submit" value="Upload" class="deploy-image"/>
+  </div>
+</div>
+	</form>
+</body>
 </html>
+
