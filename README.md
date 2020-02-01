@@ -17,7 +17,7 @@ MLstats</br></br>
 ![](https://github.com/szachovy/MLstats/blob/master/static/pics/MLstats1.png)
 ![](https://github.com/szachovy/MLstats/blob/master/static/pics/MLstats2.png)
 
-### Instalation
+### Installation
 ___
 
 ```python
